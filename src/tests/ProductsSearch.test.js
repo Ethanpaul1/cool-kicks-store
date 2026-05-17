@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import Products from "../pages/Products"
+import { MemoryRouter } from "react-router-dom"
 
 const mockSneakers = [
   {
@@ -33,7 +34,11 @@ describe("Products search", () => {
   test("filters products as the user types", async () => {
     fetch.mockResolvedValueOnce({ ok: true, json: async () => mockSneakers })
 
-    render(<Products />)
+    render(
+      <MemoryRouter initialEntries={["/products"]}>
+        <Products />
+      </MemoryRouter>
+    )
 
     // wait for collection to show
     expect(await screen.findByText(/Our Sneaker Collection/i)).toBeInTheDocument()

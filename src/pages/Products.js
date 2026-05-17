@@ -1,4 +1,5 @@
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
+import { useLocation } from "react-router-dom"
 import useSneakers from "../hooks/useSneakers"
 import SneakerCard from "../components/SneakerCard"
 
@@ -6,6 +7,14 @@ function Products() {
   // Using our custom hook to get sneaker data
   const { sneakers, loading } = useSneakers()
   const [query, setQuery] = useState("")
+  const location = useLocation()
+
+  // Keep query in sync with ?search= in the URL
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const s = params.get("search") || ""
+    setQuery(s)
+  }, [location.search])
 
   const filteredSneakers = useMemo(() => {
     const q = query.trim().toLowerCase()

@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import Products from "../pages/Products"
+import { MemoryRouter } from "react-router-dom"
 
 const mockSneakers = [
   {
@@ -35,7 +36,11 @@ describe("Products page", () => {
       json: async () => mockSneakers,
     })
 
-    render(<Products />)
+    render(
+      <MemoryRouter initialEntries={["/products"]}>
+        <Products />
+      </MemoryRouter>
+    )
 
     expect(await screen.findByText(/Our Sneaker Collection/i)).toBeInTheDocument()
     expect(screen.getByText(/Air Pulse 1/i)).toBeInTheDocument()
