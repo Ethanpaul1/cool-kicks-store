@@ -36,6 +36,8 @@ const styles = {
   links: {
     display: "flex",
     gap: "25px",
+    flexWrap: "wrap",
+    justifyContent: "center",
   },
   link: {
     color: "#ffffff",

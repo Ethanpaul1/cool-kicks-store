@@ -45,10 +45,10 @@ const styles = {
     marginBottom: "40px",
   },
   grid: {
-    display: "flex",
-    flexWrap: "wrap",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
     gap: "25px",
-    justifyContent: "center",
+    justifyItems: "center",
   },
 }
 
