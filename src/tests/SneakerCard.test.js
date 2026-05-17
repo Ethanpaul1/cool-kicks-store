@@ -1,0 +1,1 @@
+// SneakerCard component tests - placeholder
