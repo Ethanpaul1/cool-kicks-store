@@ -16,6 +16,10 @@ function useSneakers() {
         setSneakers(data)
         setLoading(false)
       })
+      .catch((error) => {
+        console.error("Failed to fetch sneakers:", error)
+        setLoading(false)
+      })
   }, [API_URL])
 
   // POST - adds a new sneaker
@@ -27,6 +31,7 @@ function useSneakers() {
     })
       .then((response) => response.json())
       .then((data) => setSneakers([...sneakers, data]))
+      .catch((error) => console.error("Failed to add sneaker:", error))
   }
 
   // PATCH - edits an existing sneaker's price
@@ -44,6 +49,7 @@ function useSneakers() {
           )
         )
       })
+      .catch((error) => console.error("Failed to update sneaker:", error))
   }
 
   // DELETE - removes a sneaker
@@ -52,6 +58,7 @@ function useSneakers() {
       method: "DELETE",
     }).then(() => {
       setSneakers(sneakers.filter((sneaker) => sneaker.id !== id))
+    .catch((error) => console.error("Failed to delete sneaker:", error))
     })
   }
 
