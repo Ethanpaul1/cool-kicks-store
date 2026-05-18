@@ -40,11 +40,12 @@ const styles = {
     borderRadius: "12px",
     overflow: "hidden",
     boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-    width: "260px",
+    width: "100%",
+    maxWidth: "260px",
   },
   image: {
     width: "100%",
-    height: "200px",
+    height: "180px",
     objectFit: "cover",
   },
   info: {
