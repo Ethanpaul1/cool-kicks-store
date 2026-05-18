@@ -8,7 +8,7 @@ A React-based e-commerce app for browsing and managing sneakers.
 2. Run `npm install`
 3. Run `npm run server` to start the backend
 4. Run `npm start` to start the app
-5. Visit `http://localhost:3000`
+5. Visit `http://localhost:3004`
 
 ## Features
 
