@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import Products from "../pages/Products"
 import { MemoryRouter } from "react-router-dom"
 
@@ -21,7 +22,7 @@ const mockSneakers = [
   },
 ]
 
-describe("Products page", () => {
+describe("Products search", () => {
   beforeEach(() => {
     global.fetch = jest.fn()
   })
@@ -30,11 +31,8 @@ describe("Products page", () => {
     jest.resetAllMocks()
   })
 
-  test("renders sneaker collection after loading", async () => {
-    fetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => mockSneakers,
-    })
+  test("filters products as the user types", async () => {
+    fetch.mockResolvedValueOnce({ ok: true, json: async () => mockSneakers })
 
     render(
       <MemoryRouter initialEntries={["/products"]}>
@@ -42,9 +40,24 @@ describe("Products page", () => {
       </MemoryRouter>
     )
 
+    // wait for collection to show
     expect(await screen.findByText(/Our Sneaker Collection/i)).toBeInTheDocument()
+
+    // both items present initially
     expect(screen.getByText(/Air Pulse 1/i)).toBeInTheDocument()
     expect(screen.getByText(/Runner X/i)).toBeInTheDocument()
-    expect(screen.getByText(/2 styles available/i)).toBeInTheDocument()
+
+    // type a query that matches only Runner X
+    await userEvent.type(screen.getByLabelText("search-input"), "Runner")
+
+    expect(screen.queryByText(/Air Pulse 1/i)).not.toBeInTheDocument()
+    expect(screen.getByText(/Runner X/i)).toBeInTheDocument()
+
+    // clear and search Nike
+    await userEvent.clear(screen.getByLabelText("search-input"))
+    await userEvent.type(screen.getByLabelText("search-input"), "nike")
+
+    expect(screen.getByText(/Air Pulse 1/i)).toBeInTheDocument()
+    expect(screen.queryByText(/Runner X/i)).not.toBeInTheDocument()
   })
 })
