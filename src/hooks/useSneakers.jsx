@@ -10,7 +10,11 @@ function useSneakers() {
   const mountedRef = useRef(true)
 
   useEffect(() => {
+    // Set to true when component mounts
+    mountedRef.current = true
+    
     return () => {
+      // Set to false when component unmounts
       mountedRef.current = false
     }
   }, [])
