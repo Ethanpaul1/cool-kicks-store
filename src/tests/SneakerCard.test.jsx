@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import SneakerCard from "../components/SneakerCard"
+import { vi } from "vitest"
+import SneakerCard from "../components/SneakerCard.jsx"
 
 // Mock sneaker data for testing
 const mockSneaker = {
@@ -22,7 +23,7 @@ test("renders sneaker name, brand and price", () => {
 
 // Test 2 - checks delete button works
 test("calls onDelete when delete button is clicked", async () => {
-  const mockDelete = jest.fn()
+  const mockDelete = vi.fn()
   render(<SneakerCard sneaker={mockSneaker} onDelete={mockDelete} />)
   const deleteBtn = screen.getByText(/Delete/i)
   await userEvent.click(deleteBtn)
@@ -31,7 +32,7 @@ test("calls onDelete when delete button is clicked", async () => {
 
 // Test 3 - checks edit button works
 test("calls onUpdate when edit button is clicked", async () => {
-  const mockUpdate = jest.fn()
+  const mockUpdate = vi.fn()
   render(<SneakerCard sneaker={mockSneaker} onUpdate={mockUpdate} />)
   const editBtn = screen.getByText(/Edit Price/i)
   await userEvent.click(editBtn)

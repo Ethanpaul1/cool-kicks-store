@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import useSneakers from "../hooks/useSneakers"
-import SneakerCard from "../components/SneakerCard"
+import useSneakers from "../hooks/useSneakers.jsx"
+import SneakerCard from "../components/SneakerCard.jsx"
 
 function Products() {
   // Using our custom hook to get sneaker data

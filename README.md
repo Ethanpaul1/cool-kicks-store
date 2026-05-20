@@ -1,23 +1,37 @@
 # Cool Kicks Store
 
-A React-based e-commerce app for browsing and managing sneakers.
+A Vite + React sneaker store for browsing products and managing inventory.
 
 ## Setup Instructions
 
 1. Clone the repository
 2. Run `npm install`
-3. Run `npm run server` to start the backend
-4. Run `npm start` to start the app
-5. Visit `http://localhost:3004`
+3. Run `npm run server` to start the json-server backend on `http://localhost:3001`
+4. In another terminal, run `npm start` to start Vite
+5. Visit `http://localhost:5173`
 
 ## Features
 
+- Vite-powered React app
+- Home, Products, and Admin routes
 - Browse sneakers on the Products page
-- Add, edit, and delete sneakers on the Admin page
-- Client-side routing between Home, Products, and Admin
-- Custom React hook for data management
+- Search sneakers by name, brand, or description
+- Add new sneakers with a POST request
+- Edit sneaker prices with a PATCH request
+- Delete sneakers with a DELETE request
+- Shared `useSneakers` hook for data loading and CRUD actions
+
+## Testing
+
+Run the Vitest suite with:
+
+```bash
+npm run vitest
+```
 
 ## Known Limitations
 
-- Uses json-server as a mock backend
-- Images require a valid URL
+- Uses `json-server` as a local mock backend
+- The backend must be running for live CRUD actions
+- Images require valid external URLs
+- No authentication or persistent production database is included

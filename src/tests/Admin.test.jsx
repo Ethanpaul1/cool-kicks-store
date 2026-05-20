@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import Admin from "../pages/Admin"
+import { vi } from "vitest"
+import Admin from "../pages/Admin.jsx"
 
 const mockSneakers = [
   {
@@ -15,11 +16,11 @@ const mockSneakers = [
 
 describe("Admin page", () => {
   beforeEach(() => {
-    global.fetch = jest.fn()
+    global.fetch = vi.fn()
   })
 
   afterEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
   })
 
   test("loads inventory and displays sneaker cards", async () => {
@@ -59,13 +60,13 @@ describe("Admin page", () => {
 
     expect(await screen.findByText(/Current Inventory/i)).toBeInTheDocument()
 
-    userEvent.type(screen.getByPlaceholderText(/Sneaker Name/i), newSneaker.name)
-    userEvent.type(screen.getByPlaceholderText(/Brand/i), newSneaker.brand)
-    userEvent.type(screen.getByPlaceholderText(/Price/i), newSneaker.price.toString())
-    userEvent.type(screen.getByPlaceholderText(/Description/i), newSneaker.description)
-    userEvent.type(screen.getByPlaceholderText(/Image URL/i), newSneaker.image)
+    await userEvent.type(screen.getByPlaceholderText(/Sneaker Name/i), newSneaker.name)
+    await userEvent.type(screen.getByPlaceholderText(/Brand/i), newSneaker.brand)
+    await userEvent.type(screen.getByPlaceholderText(/Price/i), newSneaker.price.toString())
+    await userEvent.type(screen.getByPlaceholderText(/Description/i), newSneaker.description)
+    await userEvent.type(screen.getByPlaceholderText(/Image URL/i), newSneaker.image)
 
-    userEvent.click(screen.getByRole("button", { name: /Add Sneaker/i }))
+    await userEvent.click(screen.getByRole("button", { name: /Add Sneaker/i }))
 
     await waitFor(() => {
       expect(screen.getByText(/Runner X/i)).toBeInTheDocument()
@@ -103,12 +104,12 @@ describe("Admin page", () => {
 
     expect(await screen.findByText(/Air Pulse 1/i)).toBeInTheDocument()
 
-    userEvent.click(screen.getByRole("button", { name: /Edit Price/i }))
+    await userEvent.click(screen.getByRole("button", { name: /Edit Price/i }))
 
     const priceInput = screen.getByPlaceholderText(/New Price/i)
-    userEvent.clear(priceInput)
-    userEvent.type(priceInput, updatedPrice.toString())
-    userEvent.click(screen.getByRole("button", { name: /Update Price/i }))
+    await userEvent.clear(priceInput)
+    await userEvent.type(priceInput, updatedPrice.toString())
+    await userEvent.click(screen.getByRole("button", { name: /Update Price/i }))
 
     await waitFor(() => {
       expect(screen.getByText(/\$150/i)).toBeInTheDocument()
@@ -135,7 +136,7 @@ describe("Admin page", () => {
 
     expect(await screen.findByText(/Air Pulse 1/i)).toBeInTheDocument()
 
-    userEvent.click(screen.getByRole("button", { name: /Delete/i }))
+    await userEvent.click(screen.getByRole("button", { name: /Delete/i }))
 
     await waitFor(() => {
       expect(screen.queryByText(/Air Pulse 1/i)).not.toBeInTheDocument()

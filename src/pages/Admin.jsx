@@ -1,6 +1,6 @@
 import { useState } from "react"
-import useSneakers from "../hooks/useSneakers"
-import SneakerCard from "../components/SneakerCard"
+import useSneakers from "../hooks/useSneakers.jsx"
+import SneakerCard from "../components/SneakerCard.jsx"
 
 function Admin() {
   const { sneakers, loading, addSneaker, updateSneaker, deleteSneaker } =

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import { MemoryRouter } from "react-router-dom"
-import Navbar from "../components/Navbar"
+import { vi } from "vitest"
+import Navbar from "../components/Navbar.jsx"
 
 // Test 1 - checks the store name renders
 test("renders Cool Kicks Store title", () => {

@@ -12,7 +12,7 @@
       "id": "1",
       "name": "Air Pulse 1",
       "brand": "Nike",
-      "price": 120,
+      "price": 199.99,
       "description": "Classic low-top with a clean white sole",
       "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"
     },
@@ -20,7 +20,7 @@
       "id": "2",
       "name": "Boost Runner",
       "brand": "Adidas",
-      "price": 150,
+      "price": 299.99,
       "description": "Lightweight with responsive boost cushioning",
       "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400"
     },
